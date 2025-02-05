@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Facts About Me</title>
+    <title>Fun Facts About Traveller</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,30 +20,39 @@
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
             color: #4a90e2;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin: 10px 0;
+        #fun-fact {
+            margin: 20px 0;
             padding: 10px;
             background-color: #e9f7fe;
             border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #357ab8;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Fun Facts About Me</h1>
-        <ul id="fun-facts-list"></ul>
+        <h1>Fun Facts About Traveller</h1>
+        <div id="fun-fact"></div>
+        <button id="generate-fact-btn">Generate Another Fact About Traveller</button>
     </div>
     <script>
         const funFacts = [
@@ -89,13 +98,19 @@
             }
         ];
 
-        const funFactsList = document.getElementById('fun-facts-list');
+        const funFactElement = document.getElementById('fun-fact');
+        const generateFactBtn = document.getElementById('generate-fact-btn');
 
-        funFacts.forEach(fact => {
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>${fact.title}:</strong> ${fact.description}`;
-            funFactsList.appendChild(listItem);
-        });
+        function displayRandomFact() {
+            const randomIndex = Math.floor(Math.random() * funFacts.length);
+            const fact = funFacts[randomIndex];
+            funFactElement.innerHTML = `<strong>${fact.title}:</strong> ${fact.description}`;
+        }
+
+        generateFactBtn.addEventListener('click', displayRandomFact);
+
+        // Display a fact initially
+        displayRandomFact();
     </script>
 </body>
 </html>
